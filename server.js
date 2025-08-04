@@ -13,8 +13,21 @@ const config = {
 }
 app.use(cors(config))
 
-//const removeDuplicates = (arr) => arr.filter((item, index) => arr.indexOf(item) === index);
-const removeDuplicates= (arr) => [...new Set(arr)];
+const removeDuplicates = (arr) => arr.filter((item, index) => arr.indexOf(item) === index);
+//const removeDuplicates= (arr) => [...new Set(arr)];
+
+function  removeForwardSlashes(urls) {
+//url.replace(/\/+$/, '');
+let r=[]
+let i = 0
+urls.forEach((url) => {
+r[i++]=url.replace(/\/+$/, '');
+});
+
+return r
+
+}
+
 
 app.post('/', (req, res) => {
   // const text = req.body.text;
@@ -51,10 +64,11 @@ const a = async (url) => {
 
     //urls.forEach(u => console.log(u));
         console.log(9)
+const resArray = removeForwardSlashes(urls)
 
 //console.log("2 urls="+urls)
 
-res.json(removeDuplicates(urls))
+res.json(removeDuplicates(resArray))
 
   } catch (error) {
      console.error('Error fetching or parsing page:', error);
