@@ -13,7 +13,8 @@ const config = {
 }
 app.use(cors(config))
 
-const removeDuplicates = (arr) => arr.filter((item, index) => arr.indexOf(item) === index);
+//const removeDuplicates = (arr) => arr.filter((item, index) => arr.indexOf(item) === index);
+const removeDuplicates= (arr) => [...new Set(arr)];
 
 app.post('/', (req, res) => {
   // const text = req.body.text;
