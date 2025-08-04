@@ -13,6 +13,8 @@ const config = {
 }
 app.use(cors(config))
 
+const removeDuplicates = (arr) => arr.filter((item, index) => arr.indexOf(item) === index);
+
 app.post('/', (req, res) => {
   // const text = req.body.text;
   // console.log('Received text:', text);
@@ -51,7 +53,7 @@ const a = async (url) => {
 
 //console.log("2 urls="+urls)
 
-res.json(urls)
+res.json(removeDuplicates(urls))
 
   } catch (error) {
      console.error('Error fetching or parsing page:', error);
