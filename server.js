@@ -5,9 +5,10 @@ const cors = require('cors')
 const app = express();
 
 app.use(express.json());
-
+//urilinks-project-urls-to-tabs-html.vercel.app
+//http://127.0.0.1:8080
 const config = {
-    origin: "http://127.0.0.1:8080",
+    origin: "https://urilinks-project-urls-to-tabs-html.vercel.app",
     methods: "POST"
 }
 app.use(cors(config))
