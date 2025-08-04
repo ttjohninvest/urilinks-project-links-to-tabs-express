@@ -1,0 +1,59 @@
+<html>
+  <head> </head>
+  <body>
+    <a href="file:///C:/Users/Admin/Documents/1-maxschwarzmueller/1-toolbox-for-nextjs/1-websites/0a-tools-nextjs/urilinks-project-bookmarks-html-generator-master/index.html">convert list of urls to bookmarks.html file</a>
+    <h1 id="fe">Gets all of the urls on a webpage, bookmark</h1>
+    <input id="urlid" type="text" />
+    <button onclick="fetchData()">Get Data</button>
+    <ul id="data"></ul>
+    <script>
+      function fetchData() {
+        const ul = document.getElementById("data");
+        document.getElementById("data").innerHTML = "";
+        const url2 = document.getElementById("urlid").value;
+        fetch("http://localhost:3000/data", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ url: url2 }),
+        })
+          // .then(response => response.json())
+          // .then(data => console.log(data))
+          // .catch(error => console.error('Error:', error));
+          .then((response) => {
+            //console.log("response")
+            return response.json();
+          })
+          .then((data) => {
+            //console.log('data='+JSON.stringify(data))
+            // data.map(function (url) {
+            //   let li = document.createElement("li");
+            //   let name = document.createElement("h2");
+
+            //   name.innerHTML = `${url}`;
+
+            //   li.appendChild(name);
+
+            //   ul.appendChild(li);
+            // });
+
+            data.map((url) => {
+              let li = document.createElement("li");
+              let a = document.createElement("a");
+              a.href = url;
+              a.target = "_blank";
+              a.innerHTML = `${url}`;
+
+              li.appendChild(a);
+
+              ul.appendChild(li);
+            });
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+    </script>
+  </body>
+</html>
