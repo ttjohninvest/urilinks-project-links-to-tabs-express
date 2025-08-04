@@ -12,7 +12,7 @@ const config = {
 }
 app.use(cors(config))
 
-app.post('/data', (req, res) => {
+app.post('/', (req, res) => {
   // const text = req.body.text;
   // console.log('Received text:', text);
   // res.json({ received: text });
