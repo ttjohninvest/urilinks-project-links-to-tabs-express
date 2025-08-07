@@ -54,7 +54,6 @@ const a = async (url) => {
     const anchors = document.querySelectorAll('a');
         console.log(6)
 
-//console.log("anchors="+anchors)
     const urls = Array.from(anchors)
       .map(a => a.href)
       .filter(href => href && href.startsWith('http'));
@@ -84,5 +83,5 @@ a(req.body.url)
 });
 
 app.listen(port, () => {
-  console.log('Server is running on port 3000');
+  console.log(`Server is running on port ${port}`);
 });
