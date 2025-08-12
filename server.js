@@ -64,11 +64,15 @@ const a = async (url) => {
 
     //urls.forEach(u => console.log(u));
         console.log(9)
-const resArray = removeForwardSlashes(urls)
+if(urls.length > 0) {
+        const resArray = removeForwardSlashes(urls)
 
 //console.log("2 urls="+urls)
 
 res.json(removeDuplicates(resArray))
+} else {
+  res.json([])
+}
 
   } catch (error) {
      console.error('Error fetching or parsing page:', error);
