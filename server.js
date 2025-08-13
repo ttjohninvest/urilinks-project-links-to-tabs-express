@@ -8,11 +8,33 @@ const port = process.env.PORT || 3000
 app.use(express.json());
 //urilinks-project-urls-to-tabs-html.vercel.app
 //http://127.0.0.1:8080
-const config = {
-    origin: "https://urilinks-project-urls-to-tabs-html.vercel.app",
-    methods: "POST"
-}
-app.use(cors(config))
+// const config = {
+//     origin: "https://urilinks-project-urls-to-tabs-html.vercel.app",
+//     methods: "POST"
+// }
+// app.use(cors(config))
+
+const allowedOrigins = [
+  'https://urilinks-project-urls-to-tabs-html.vercel.app',
+  'https://urilinks.com'
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Check if the origin is in the allowed list
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      // Allow the request if origin is in the list or if no origin is present (e.g., server-to-server)
+      callback(null, true);
+    } else {
+      // Reject the request if origin is not in the list
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods:"POST"
+};
+
+// Apply the cors middleware with the options
+app.use(cors(corsOptions));
 
 const removeDuplicates = (arr) => arr.filter((item, index) => arr.indexOf(item) === index);
 //const removeDuplicates= (arr) => [...new Set(arr)];
