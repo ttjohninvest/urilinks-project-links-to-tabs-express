@@ -51,6 +51,56 @@ return r
 
 }
 
+ function getUsableDomain(d) {
+    //www and three dots
+    //not www and three dots
+   
+    let s1=d
+    const d1=d.split(".")
+    const dotsCount = s1.split(".").length - 1
+    
+    ////
+    //s1=d1[1]+"."+d1[2]
+    //console.log("d1[1].d1[2]="+s1)
+    if (s1.substring(0, 4) === 'www') {
+       console.log(1)
+    } else if(dotsCount===1) {
+      console.log(2)
+    } else if(dotsCount===2) {
+      console.log(3)
+      s1=d1[1]+"."+d1[2]
+    } else if(dotsCount===3) {
+      console.log(4)
+      s1=d1[2]+"."+d1[3]
+    } else if(dotsCount===4) {
+      console.log(5)
+          s1=d1[3]+"."+d1[4]
+    }
+    else if(dotsCount===4) {
+      console.log(6)
+          s1=d1[4]+"."+d1[5]
+    }
+    else if(dotsCount===5) {
+      console.log(7)
+          s1=d1[5]+"."+d1[6]
+    }
+    else if(dotsCount===6) {
+      console.log(8)
+          s1=d1[6]+"."+d1[7]
+    }
+    else if(dotsCount===7) {
+      console.log(9)
+          s1=d1[7]+"."+d1[8]
+    }
+    else if(dotsCount===8) {
+      console.log(10)
+          s1=d1[8]+"."+d1[9]
+    }
+    console.log(11)
+    console.log("s1="+s1)
+    return s1
+  }
+
 
 app.post('/', (req, res) => {
   // const text = req.body.text;
@@ -80,7 +130,17 @@ const a = async (url) => {
       .map(a => a.href)
       .filter(href => href && href.startsWith('http'));
     console.log(7)
-    const urls2 = [req.body.url,...urls] //I added the passed domain name to the list so I derive its hashtag from it
+
+
+
+     const urlObject = new URL(req.body.url);
+      const usableDomain = getUsableDomain(urlObject.hostname)
+      const theUrl = "https://" + usableDomain
+
+
+
+
+    const urls2 = [theUrl,...urls] //I added the passed domain name to the list so I derive its hashtag from it
     //and append it to each hashtag derived from the urls on the page for example #6pm#amazon
     //now #amazon will be in the bookmarks file so i can append it to #6pm in /fetchbookmarks
     console.log(`Found ${urls.length} URLs:`);
