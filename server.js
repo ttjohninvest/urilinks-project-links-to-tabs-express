@@ -80,14 +80,16 @@ const a = async (url) => {
       .map(a => a.href)
       .filter(href => href && href.startsWith('http'));
     console.log(7)
-
+    const urls2 = [req.body.url,...urls] //I added the passed domain name to the list so I derive its hashtag from it
+    //and append it to each hashtag derived from the urls on the page for example #6pm#amazon
+    //now #amazon will be in the bookmarks file so i can append it to #6pm in /fetchbookmarks
     console.log(`Found ${urls.length} URLs:`);
         console.log(8)
 
     //urls.forEach(u => console.log(u));
         console.log(9)
-if(urls.length > 0) {
-        const resArray = removeForwardSlashes(urls)
+if(urls2.length > 0) {
+        const resArray = removeForwardSlashes(urls2)
 
 //console.log("2 urls="+urls)
 
