@@ -124,6 +124,7 @@ const a = async (url) => {
         console.log(5)
 
     const anchors = document.querySelectorAll('a');
+    const title = document.querySelector('title')
         console.log(6)
 
     const urls = Array.from(anchors)
@@ -152,8 +153,12 @@ if(urls2.length > 0) {
         const resArray = removeForwardSlashes(urls2)
 
 //console.log("2 urls="+urls)
-
-res.json(removeDuplicates(resArray))
+const obj = {
+  title:title.innerHTML,
+  urls:resArray
+}
+//res.json(removeDuplicates(resArray))
+res.json(obj)
 } else {
   res.json([])
 }
